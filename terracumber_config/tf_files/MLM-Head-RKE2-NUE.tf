@@ -110,19 +110,18 @@ module "cucumber_testsuite" {
   product_version = "head"
 
   // Kubernetes variables
-  kubernetes                     = true
-  use_devel_oci                  = true
-  install_mlm_server             = true
-  install_mlm_proxy              = true
-  install_traefik                = true
-  install_local_path_provisioner = true
-  deploy_coco_attestation        = true
-  deploy_saline                  = true
-  deploy_tftp                    = true
-  deploy_hub_api                 = true
-  install_kubectl_helm           = false
-  kubeconfig_path                = null
-  install_uyuni_via_testsuite    = true
+  kubernetes                                = true
+  use_devel_oci                             = true
+  deploy_coco_attestation                   = true
+  deploy_saline                             = true
+  deploy_tftp                               = true
+  deploy_hub_api                            = true
+  install_kubectl_helm                      = false
+  kubeconfig_path                           = null
+  install_uyuni_via_testsuite               = true
+  kubernetes_create_static_var_spacewalk_pv = true
+  kubernetes_create_static_var_pgsql_pv     = true
+  local_path_provisioner_default_class      = true
 
   // Cucumber repository configuration for the controller
   git_username = var.GIT_USER
@@ -224,14 +223,14 @@ module "cucumber_testsuite" {
         memory = 2048
       }
     }
-    deblike_minion = {
-      image = "ubuntu2404o"
-      provider_settings = {
-        mac = "aa:b2:92:42:00:fb"
-        vcpu = 2
-        memory = 2048
-      }
-    }
+    # deblike_minion = {
+    #   image = "ubuntu2404o"
+    #   provider_settings = {
+    #     mac = "aa:b2:92:42:00:fb"
+    #     vcpu = 2
+    #     memory = 2048
+    #   }
+    # }
     build_host = {
       image = "sles15sp7o"
       provider_settings = {
